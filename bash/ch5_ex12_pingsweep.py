@@ -1,8 +1,12 @@
 import sys
+import os
 
-IPrange = sys.argv[0]
-startIP = sys.argv[1]
-endIP = sys.argv[2]
+IPrange = sys.argv[1]
+startIP = int(sys.argv[2])
+endIP = int(sys.argv[3])
 
 for ip in range(startIP, endIP):
-    print(ip)
+    target = "{}.{}".format(IPrange, ip)
+    response = os.system("ping -c 1 {} > /dev/null".format(target))
+    if response == 0:
+        print(target)
